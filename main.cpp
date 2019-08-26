@@ -1,24 +1,20 @@
 #include <bits/stdc++.h>
 
-using namespace std;
-
 int main() {
-    std::string palabra;
-    std::multimap<std::string, std::string> anagramasDiccionario;
+    std::string palabra; std::multimap<std::string, std::string> diccionarioDeAnagramas;
 
     while (std::cin >> palabra, palabra != "#") {
-        std::string letrasOrdenadasEnCadaPalabra(palabra);
+        std::string letrasEnUnaPalabra(palabra);
 
-        std::transform(palabra.begin(), palabra.end(), letrasOrdenadasEnCadaPalabra.begin(), ::tolower);
-        std::sort(letrasOrdenadasEnCadaPalabra.begin(), letrasOrdenadasEnCadaPalabra.end());
+        std::transform(palabra.begin(), palabra.end(), letrasEnUnaPalabra.begin(), ::tolower);
+        std::sort(letrasEnUnaPalabra.begin(), letrasEnUnaPalabra.end());
 
-        anagramasDiccionario.insert(std::pair<std::string, std::string>(letrasOrdenadasEnCadaPalabra, palabra));
+        diccionarioDeAnagramas.insert(std::pair<std::string, std::string>(letrasEnUnaPalabra, palabra));
     }
+    std::vector<std::string> ananagramas;
 
-    std::vector<string> ananagramas;
-
-    for (auto && vocablo: anagramasDiccionario)
-        if (anagramasDiccionario.count(vocablo.first) == 1)
+    for (auto && vocablo: diccionarioDeAnagramas)
+        if (diccionarioDeAnagramas.count(vocablo.first) == 1)
             ananagramas.push_back(vocablo.second);
 
     std::sort(ananagramas.begin(), ananagramas.end());
